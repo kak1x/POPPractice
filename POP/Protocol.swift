@@ -14,7 +14,9 @@ protocol Chargeable {
     func convert(chargeableWattPerHour: WattPerHour) -> WattPerHour
 }
 
-struct Charger: Chargeable {
+protocol Portable {}
+
+struct Charger: Chargeable, Portable {
     var maximumWattPerHour: WattPerHour
     
     func convert(chargeableWattPerHour: WattPerHour) -> WattPerHour {
@@ -26,7 +28,7 @@ struct Charger: Chargeable {
     }
 }
 
-struct MacBook {
+struct MacBook: Portable {
     let chargeableWatt: WattPerHour = 12
     let currentBatteryCapacity: WattPerHour = 24
     let maximumBatteryCapacity: WattPerHour = 120
@@ -35,5 +37,13 @@ struct MacBook {
         let hour = (maximumBatteryCapacity - currentBatteryCapacity) / charger.convert(chargeableWattPerHour: chargeableWatt)
         
         print(hour)
+    }
+}
+
+struct Bag {
+    private var items: [Portable] = []
+    
+    mutating func put(item: Portable) {
+        items.append(item)
     }
 }

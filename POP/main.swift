@@ -17,3 +17,7 @@ macBook.chargeBattery(charger: iphoneCharger)
 macBook.chargeBattery(charger: ipadCharger)
 macBook.chargeBattery(charger: macbookCharger1)
 macBook.chargeBattery(charger: macbookCharger2)
+
+var gucciBag = Bag()
+gucciBag.put(item: macBook)
+gucciBag.put(item: macbookCharger1)
