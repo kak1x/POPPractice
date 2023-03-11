@@ -13,3 +13,15 @@ protocol Chargeable {
     
     func convert(chargeableWattPerHour: WattPerHour) -> WattPerHour
 }
+
+struct MacBook {
+    let chargeableWatt: WattPerHour = 12
+    let currentBatteryCapacity: WattPerHour = 24
+    let maximumBatteryCapacity: WattPerHour = 120
+    
+    func chargeBattery(charger: Chargeable) {
+        let hour = (maximumBatteryCapacity - currentBatteryCapacity) / charger.convert(chargeableWattPerHour: chargeableWatt)
+        
+        print(hour)
+    }
+}
